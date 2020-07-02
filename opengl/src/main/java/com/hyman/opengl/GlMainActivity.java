@@ -1,0 +1,75 @@
+package com.hyman.opengl;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
+import android.opengl.GLSurfaceView;
+import android.os.Bundle;
+
+import com.arch.demo.core.utils.LogUtil;
+
+public class GlMainActivity extends AppCompatActivity {
+
+    private GLSurfaceView glSurfaceView;
+    private boolean isRenderSet=false;
+    private GLRender render;
+
+    @SuppressLint("ServiceCast")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_gl_main);
+        //1,创建GLSurfaceView实例
+        glSurfaceView = new GLSurfaceView(this);
+
+        //2，检查支持的OPenGl 版本
+       ActivityManager activityManager= (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+       ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+
+        //3，给GLSurfaceView设置渲染器
+        if (configurationInfo.reqGlEsVersion >= 0x30000) {
+            //3.1 设置OPenGl版本
+            glSurfaceView.setEGLContextClientVersion(3);
+            render = new GLES3Render();
+            LogUtil.e("渲染器版本："+3);
+            glSurfaceView.setRenderer(render);
+            isRenderSet=true;
+        } else if (configurationInfo.reqGlEsVersion >= 0x20000) {
+            glSurfaceView.setEGLContextClientVersion(2);
+            render = new GLES2Render();
+            LogUtil.e("渲染器版本："+2);
+            glSurfaceView.setRenderer(render);
+            isRenderSet=true;
+        } else {
+            throw new RuntimeException("Needs GLESv2 or higher");
+        }
+
+        /**
+         * 设置glSurfaceView为视图
+         */
+        setContentView(glSurfaceView);
+//
+
+    }
+
+    //4，GLSurfaceView 关联Activity 生命周期 (后台渲染线程的 暂停 继续)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isRenderSet){
+            glSurfaceView.onResume();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(isRenderSet){
+            glSurfaceView.onPause();
+        }
+    }
+}

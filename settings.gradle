@@ -1,3 +1,4 @@
+include ':opengl'
 gradle.ext.includeXiangxueBaseSource = true
 if (gradle.ext.includeXiangxueBaseSource) {
     include ':base'
