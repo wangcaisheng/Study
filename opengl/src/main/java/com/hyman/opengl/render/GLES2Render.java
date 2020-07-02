@@ -1,4 +1,4 @@
-package com.hyman.opengl;
+package com.hyman.opengl.render;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

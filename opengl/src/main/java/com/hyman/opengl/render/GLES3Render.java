@@ -1,4 +1,4 @@
-package com.hyman.opengl;
+package com.hyman.opengl.render;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -52,11 +52,13 @@ public class GLES3Render extends GLRender {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-
+        //渲染surface的大小
+        glViewport(0,0,width,height);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
-
+        //清空屏幕
+      glClear(GL_COLOR_BUFFER_BIT);
     }
 }

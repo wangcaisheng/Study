@@ -1,5 +1,6 @@
-package com.hyman.opengl;
+package com.hyman.opengl.render;
 
+import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -33,4 +34,13 @@ public abstract class GLRender implements GLSurfaceView.Renderer {
 //        //清空屏幕
 //      glClear(GL_COLOR_BUFFER_BIT);
 //    }
+
+    public int loadShader(int type, String shaderCode){
+        //根据type创建顶点着色器或者片元着色器
+        int shader = GLES20.glCreateShader(type);
+        //将资源加入到着色器中，并编译
+        GLES20.glShaderSource(shader, shaderCode);
+        GLES20.glCompileShader(shader);
+        return shader;
+    }
 }
