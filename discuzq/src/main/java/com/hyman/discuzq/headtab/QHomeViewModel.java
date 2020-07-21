@@ -1,4 +1,4 @@
-package com.hyman.discuzq;
+package com.hyman.discuzq.headtab;
 
 import com.arch.demo.core.activity.IBaseView;
 import com.arch.demo.core.model.BaseModel;

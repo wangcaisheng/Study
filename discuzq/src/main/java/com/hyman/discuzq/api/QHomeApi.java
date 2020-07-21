@@ -1,7 +1,6 @@
 package com.hyman.discuzq.api;
 
 import com.arch.demo.network_api.ApiBase;
-import com.arch.demo.network_api.beans.NewsChannelsBean;
 import com.arch.demo.network_api.beans.NewsListBean;
 import com.arch.demo.network_api.utils.TecentUtil;
 import com.hyman.discuzq.bean.QTabBean;
@@ -37,21 +36,27 @@ public final class QHomeApi extends ApiBase {
         return instance;
     }
 
-
-
-    public void getQTopicList(Observer<QTabBean> observer) {
+    /**
+     * 首页Tab数据
+     * @param observer
+     */
+    public void getQTabList(Observer<QTabBean> observer) {
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("filter",null);
         requestMap.put("createThread","1");
         String timeStr = TecentUtil.getTimeStr();
         ArrayList list=new ArrayList();
-        ApiSubscribe(newsApiInterface.getQTopicList(1), observer);
+        ApiSubscribe(newsApiInterface.getTabList(1), observer);
     }
 
-    public void getQHomeThemeList(Observer<NewsListBean> observer) {
-        Map<String, String> requestMap = new HashMap<>();
+    /**
+     * Tab下列表数据
+     * @param observer
+     */
+    public void getQHomeThemeList(Observer<NewsListBean> observer,int categoryId) {
+         Map requestMap = new HashMap<>();
 //        String timeStr = TecentUtil.getTimeStr();
-//        requestMap.put("channelId", channelId);
+        requestMap.put("categoryId", categoryId);
 //        requestMap.put("channelName", channelName);
 //        requestMap.put(PAGE, page);
         ApiSubscribe(newsApiInterface.getQHomeThemeList(requestMap), observer);

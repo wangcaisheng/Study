@@ -38,8 +38,14 @@ public interface QHomeApiInterface {
 //            @Header("Date") String date,
 //            @QueryMap Map<String, String> options);
 
+
+    /**
+     * 首页Tab列表数据
+     * @param thread
+     * @return
+     */
     @GET("api/categories")
-    Observable<QTabBean> getQTopicList(
+    Observable<QTabBean> getTabList(
 //            @Header("Source") String source,
 //            @Header("Authorization") String authorization,
 //            @Header("Date") String date,
