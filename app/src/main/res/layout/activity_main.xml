@@ -29,6 +29,7 @@
 
         </FrameLayout>
 
+       <!-- 系统底部导航栏-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_view"
             android:layout_width="match_parent"

@@ -74,6 +74,7 @@ public class HeadlineNewsFragment extends MvvmFragment<FragmentHomeBinding, Head
     @Override
     public void onChannelsLoaded(ArrayList<ChannelsModel.Channel> channels) {
         mAdapter.setChannels(channels);
+        //给tabLayout设置值
         viewDataBinding.tablayout.removeAllTabs();
         for (ChannelsModel.Channel channel : channels) {
             viewDataBinding.tablayout.addTab(viewDataBinding.tablayout.newTab().setText(channel.channelName));

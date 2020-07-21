@@ -1,6 +1,9 @@
 Displays the top public gists from Github.
 ![Demo](http://i.giphy.com/3o7TKW0nrNSwdar7Ms.gif)
 
+项目结构：
+app依赖common、network_api，common和network_api根据配置依赖base
+(common、network_api作为基础依赖被所有的Model依赖)
 知识点：
 1，DataBinding的使用
 第一：

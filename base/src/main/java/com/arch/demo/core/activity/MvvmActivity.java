@@ -31,6 +31,7 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends IMvvmBa
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViewModel();
+        //处理布局
         performDataBinding();
     }
 

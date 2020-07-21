@@ -3,12 +3,15 @@ package com.hyman.discuzq.api;
 
 import com.arch.demo.network_api.beans.NewsChannelsBean;
 import com.arch.demo.network_api.beans.NewsListBean;
+import com.hyman.discuzq.bean.QTabBean;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface QHomeApiInterface {
@@ -36,9 +39,11 @@ public interface QHomeApiInterface {
 //            @QueryMap Map<String, String> options);
 
     @GET("api/categories")
-    Observable<NewsChannelsBean> getQTopicList(
+    Observable<QTabBean> getQTopicList(
 //            @Header("Source") String source,
 //            @Header("Authorization") String authorization,
 //            @Header("Date") String date,
-            @QueryMap Map<String, String> options);
+//            @Query("filter") List list,
+
+            @Query("createThread")int thread);
 }

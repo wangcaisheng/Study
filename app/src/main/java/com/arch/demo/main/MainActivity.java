@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -118,6 +119,11 @@ public class MainActivity extends MvvmActivity<ActivityMainBinding, MvvmBaseView
 
     Fragment fromFragment;
 
+    /**
+     * Fragment切换
+     * @param from
+     * @param to
+     */
     private void switchFragment(Fragment from, Fragment to) {
         if (from != to) {
             FragmentManager manger = getSupportFragmentManager();
@@ -142,6 +148,7 @@ public class MainActivity extends MvvmActivity<ActivityMainBinding, MvvmBaseView
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("RestrictedApi")
     private void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);

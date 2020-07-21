@@ -4,7 +4,9 @@ import com.arch.demo.network_api.ApiBase;
 import com.arch.demo.network_api.beans.NewsChannelsBean;
 import com.arch.demo.network_api.beans.NewsListBean;
 import com.arch.demo.network_api.utils.TecentUtil;
+import com.hyman.discuzq.bean.QTabBean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,12 +39,13 @@ public final class QHomeApi extends ApiBase {
 
 
 
-    public void getQTopicList(Observer<NewsChannelsBean> observer) {
+    public void getQTopicList(Observer<QTabBean> observer) {
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("filter",null);
         requestMap.put("createThread","1");
         String timeStr = TecentUtil.getTimeStr();
-        ApiSubscribe(newsApiInterface.getQTopicList(requestMap), observer);
+        ArrayList list=new ArrayList();
+        ApiSubscribe(newsApiInterface.getQTopicList(1), observer);
     }
 
     public void getQHomeThemeList(Observer<NewsListBean> observer) {

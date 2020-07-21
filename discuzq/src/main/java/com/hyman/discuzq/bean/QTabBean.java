@@ -1,5 +1,7 @@
 package com.hyman.discuzq.bean;
 
+import com.arch.demo.network_api.beans.BaseResponse;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * time: 2020/7/20 下午7:22
  * des:
  */
-public class QTabBean {
+public class QTabBean extends BaseResponse {
 
     private List<DataBean> data;
 

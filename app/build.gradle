@@ -19,6 +19,8 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        multiDexEnabled true
+
     }/*
     https://console.cloud.tencent.com/servicemarket/services
     */
@@ -45,11 +47,11 @@ android {
 
 dependencies {
     implementation "com.google.android.material:material:$rootProject.androidXVersion"
-    api project(':common')
-    api project(':network_api')
+    implementation project(':common')
+    implementation project(':network_api')
     implementation 'q.rorbin:badgeview:1.1.3'
 
-    api 'com.alibaba:arouter-api:1.4.1'
+    implementation 'com.alibaba:arouter-api:1.4.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     addComponent 'usercenter' //会默认添加依赖：project(':demo_component_a')
     addComponent 'news' //会默认添加依赖：project(':demo_component_a')
