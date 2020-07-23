@@ -4,6 +4,7 @@ import com.arch.demo.core.model.BaseModel;
 import com.arch.demo.core.viewmodel.MvvmBaseViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 在ViewMode中：
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  */
 public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IView,TopicItemModel> implements BaseModel.IModelListener{
 
-    public TopicListViewModel(){
-        model=new TopicItemModel();
+    public TopicListViewModel(String id,String name){
+        model=new TopicItemModel(id,name);
         model.register(this);
-
+        model.getCachedDataAndLoad();
     }
 
 
@@ -26,7 +27,7 @@ public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IVi
 
     @Override
     public void onLoadFinish(BaseModel model, Object data) {
-
+//     getPageView().onTopicItemData();
     }
 
     @Override
@@ -35,5 +36,6 @@ public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IVi
     }
 
     public interface IView {
+        void onTopicItemData(List<Object> topicList);
     }
 }
