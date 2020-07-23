@@ -4,6 +4,7 @@ package com.hyman.discuzq.api;
 import com.arch.demo.network_api.beans.NewsChannelsBean;
 import com.arch.demo.network_api.beans.NewsListBean;
 import com.hyman.discuzq.bean.QTabBean;
+import com.hyman.discuzq.bean.TopicBean;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public interface QHomeApiInterface {
      * @return
      */
     @GET("api/threads")
-    Observable<NewsListBean> getQHomeThemeList(
+    Observable<TopicBean> getQHomeThemeList(
             @QueryMap Map<String, String> options);
 
     /**
