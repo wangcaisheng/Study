@@ -1,10 +1,11 @@
 package com.hyman.discuzq;
 
+import com.arch.demo.core.fragment.IBasePagingView;
 import com.arch.demo.core.model.BaseModel;
 import com.arch.demo.core.viewmodel.MvvmBaseViewModel;
+import com.hyman.discuzq.bean.TopicBean;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 在ViewMode中：
@@ -12,12 +13,13 @@ import java.util.List;
  * 2, 注册model处理数据的回调监听
  * 3，将viewmodel获取的数据通过接口传给view.
  */
-public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IView,TopicItemModel> implements BaseModel.IModelListener{
+public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IView,TopicItemModel> implements BaseModel.IModelListener<TopicBean>{
 
     public TopicListViewModel(String id,String name){
-        model=new TopicItemModel(id,name);
+        model=new TopicItemModel(id ,name);
         model.register(this);
         model.getCachedDataAndLoad();
+
     }
 
 
@@ -26,8 +28,8 @@ public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IVi
     }
 
     @Override
-    public void onLoadFinish(BaseModel model, Object data) {
-//     getPageView().onTopicItemData();
+    public void onLoadFinish(BaseModel model, TopicBean data) {
+         getPageView().onTopicLoaded(data);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IVi
 
     }
 
-    public interface IView {
-        void onTopicItemData(List<Object> topicList);
+    public interface IView extends IBasePagingView {
+        void onTopicLoaded(TopicBean data);
     }
 }

@@ -4,6 +4,7 @@ import com.arch.demo.network_api.ApiBase;
 import com.arch.demo.network_api.beans.NewsListBean;
 import com.arch.demo.network_api.utils.TecentUtil;
 import com.hyman.discuzq.bean.QTabBean;
+import com.hyman.discuzq.bean.TopicBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public final class QHomeApi extends ApiBase {
      * Tab下列表数据
      * @param observer
      */
-    public void getQHomeThemeList(Observer<NewsListBean> observer,int categoryId) {
+    public void getQHomeThemeList(Observer<TopicBean> observer, int categoryId) {
          Map requestMap = new HashMap<>();
 //        String timeStr = TecentUtil.getTimeStr();
         requestMap.put("categoryId", categoryId);
