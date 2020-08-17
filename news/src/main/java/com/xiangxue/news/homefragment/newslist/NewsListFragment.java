@@ -53,6 +53,11 @@ public class NewsListFragment extends MvvmFragment<NewsFragmentBinding, NewsList
     @Override
     public NewsListViewModel getViewModel() {
         Log.e(this.getClass().getSimpleName(), this + ": createViewModel.");
+        /**
+         * new viewModel所做的事情：
+         * 1，实例化model
+         * 2, 加载页面数据
+         */
         return new NewsListViewModel(mChannelId, mChannelName);
     }
 
@@ -85,11 +90,16 @@ public class NewsListFragment extends MvvmFragment<NewsFragmentBinding, NewsList
         showLoading();
     }
 
+    /**
+     * 拿到页面数据
+     * @param newsItems
+     */
     @Override
     public void onNewsLoaded(ArrayList<BaseCustomViewModel> newsItems) {
         if (newsItems != null && newsItems.size() > 0) {
             viewDataBinding.refreshLayout.finishLoadMore();
             viewDataBinding.refreshLayout.finishRefresh();
+
             showContent();
             mAdapter.setData(newsItems);
         } else {

@@ -7,16 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.hyman.discuzq.TopicListFragment;
+import com.hyman.discuzq.topic.TopicListFragment;
 import com.hyman.discuzq.bean.QTabBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
 public class QHomeFragmentPagerAdapter extends FragmentStatePagerAdapter {
     private List<QTabBean.DataBean> mTabs;
 

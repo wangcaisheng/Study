@@ -1,4 +1,4 @@
-package com.hyman.discuzq;
+package com.hyman.discuzq.topic;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.arch.demo.core.fragment.MvvmFragment;
-import com.arch.demo.core.viewmodel.IMvvmBaseViewModel;
+import com.hyman.discuzq.R;
 import com.hyman.discuzq.bean.TopicBean;
 import com.hyman.discuzq.databinding.FragmentTopicBinding;
 import com.scwang.smartrefresh.header.WaterDropHeader;
@@ -44,14 +44,19 @@ public class TopicListFragment extends MvvmFragment<FragmentTopicBinding,TopicLi
         viewDataBinding.listview.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new TopicItemRVAdapter();
         viewDataBinding.listview.setAdapter(mAdapter);
+        //设置刷新头
         viewDataBinding.refreshLayout.setRefreshHeader(new WaterDropHeader(getContext()));
+        //设置加载更多view
         viewDataBinding.refreshLayout.setRefreshFooter(new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale));
+        //下拉刷新监听
         viewDataBinding.refreshLayout.setOnRefreshListener(refreshlayout -> {
-//            viewModel.tryToRefresh();
+            viewModel.tryToRefresh();
         });
+        //加载更多监听
         viewDataBinding.refreshLayout.setOnLoadMoreListener(refreshlayout -> {
-//            viewModel.tryToLoadNextPage();
+            viewModel.tryToLoadNextPage();
         });
+        //设置loadsir
         setLoadSir(viewDataBinding.refreshLayout);
         showLoading();
     }
@@ -87,6 +92,8 @@ public class TopicListFragment extends MvvmFragment<FragmentTopicBinding,TopicLi
      */
     @Override
     public void onTopicLoaded(TopicBean data) {
-
+      //
+        mAdapter.setData(data);
+        showContent();
     }
 }

@@ -1,4 +1,4 @@
-package com.hyman.discuzq;
+package com.hyman.discuzq.topic;
 
 import android.view.ViewGroup;
 
@@ -10,8 +10,10 @@ import com.arch.demo.common.views.titleview.TitleView;
 import com.arch.demo.common.views.titleview.TitleViewViewModel;
 import com.arch.demo.core.customview.BaseCustomViewModel;
 import com.arch.demo.core.recyclerview.BaseViewHolder;
+import com.hyman.discuzq.bean.TopicBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: Hyman
@@ -19,15 +21,23 @@ import java.util.ArrayList;
  * des:
  */
 public class TopicItemRVAdapter extends RecyclerView.Adapter<BaseViewHolder>{
-    private ArrayList<BaseCustomViewModel> mItems;
+    private List<TopicBean.DataRoot> mItems;
     private final int VIEW_TYPE_PICTURE_TITLE = 1;
     private final int VIEW_TYPE_TITLE = 2;
+    private TopicBean mData;
 
 
-    void setData(ArrayList<BaseCustomViewModel> items) {
+    void setData(List<TopicBean.DataRoot> items) {
         mItems = items;
         notifyDataSetChanged();
     }
+
+    void setData(TopicBean data){
+        this.mData=data;
+        setData(data.getData());
+    }
+
+
 
     @Override
     public int getItemCount() {
@@ -39,11 +49,11 @@ public class TopicItemRVAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(mItems.get(position) instanceof PictureTitleViewViewModel){
-            return VIEW_TYPE_PICTURE_TITLE;
-        } else if(mItems.get(position) instanceof TitleViewViewModel){
-            return VIEW_TYPE_TITLE;
-        }
+//        if(mItems.get(position) instanceof PictureTitleViewViewModel){
+//            return VIEW_TYPE_PICTURE_TITLE;
+//        } else if(mItems.get(position) instanceof TitleViewViewModel){
+//            return VIEW_TYPE_TITLE;
+//        }
         return -1;
     }
     @Override
@@ -64,6 +74,6 @@ public class TopicItemRVAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.bind(mItems.get(position));
+//        holder.bind(mItems.get(position));
     }
 }

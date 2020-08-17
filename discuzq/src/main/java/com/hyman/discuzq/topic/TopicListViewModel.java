@@ -1,11 +1,9 @@
-package com.hyman.discuzq;
+package com.hyman.discuzq.topic;
 
 import com.arch.demo.core.fragment.IBasePagingView;
 import com.arch.demo.core.model.BaseModel;
 import com.arch.demo.core.viewmodel.MvvmBaseViewModel;
 import com.hyman.discuzq.bean.TopicBean;
-
-import java.util.ArrayList;
 
 /**
  * 在ViewMode中：
@@ -27,14 +25,32 @@ public class TopicListViewModel extends MvvmBaseViewModel<TopicListViewModel.IVi
         model.getCachedDataAndLoad();
     }
 
+    /**
+     * 成功拿到数据
+     * @param model
+     * @param data
+     */
     @Override
     public void onLoadFinish(BaseModel model, TopicBean data) {
          getPageView().onTopicLoaded(data);
     }
 
+    /**
+     * 获取数据失败
+     * @param model
+     * @param prompt
+     */
     @Override
     public void onLoadFail(BaseModel model, String prompt) {
+        // TODO: 2020/8/17
 
+    }
+
+
+    public void tryToRefresh() {
+    }
+
+    public void tryToLoadNextPage() {
     }
 
     public interface IView extends IBasePagingView {

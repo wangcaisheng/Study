@@ -1,4 +1,4 @@
-package com.hyman.discuzq;
+package com.hyman.discuzq.topic;
 
 import android.content.Intent;
 import android.text.TextUtils;
@@ -28,6 +28,9 @@ public class TopicItemModel extends BaseModel<TopicBean> {
 
     }
 
+    /**
+     * 加载数据
+     */
     @Override
     protected void load() {
         QHomeApi.getInstance().getQHomeThemeList(new BaseObserver<TopicBean>(this) {

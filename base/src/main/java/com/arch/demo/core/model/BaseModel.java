@@ -55,6 +55,10 @@ public abstract class BaseModel<T> extends SuperBaseModel<T> {
         loadSuccess(data);
     }
 
+    /**
+     * Model定义接口，将数据回传给ViewModel
+     * @param <T>
+     */
     public interface IModelListener<T> extends SuperBaseModel.IBaseModelListener {
         void onLoadFinish(BaseModel model, T data);
         void onLoadFail(BaseModel model, String prompt);

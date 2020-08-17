@@ -24,7 +24,14 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 
-
+/**
+ * Fragment基类
+ * 子类需要：
+ * 1，布局文件ID
+ * 2，返回ViewModel实例
+ * @param <V>
+ * @param <VM>
+ */
 public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBaseViewModel> extends Fragment implements IBasePagingView {
     protected VM viewModel;
     protected V viewDataBinding;
@@ -52,6 +59,7 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //从子类获取viewModel实例
         viewModel = getViewModel();
         if (viewModel != null) {
             viewModel.attachUI(this);
@@ -72,6 +80,9 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
         super.onDestroyView();
     }
 
+    /**
+     * 3,空页面
+     */
     @Override
     public void onRefreshEmpty() {
         if(mLoadService != null){
@@ -79,6 +90,10 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
         }
     }
 
+    /**
+     * 4,刷新失败
+     * @param message
+     */
     @Override
     public void onRefreshFailure(String message) {
         if (mLoadService != null) {
@@ -90,6 +105,9 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
         }
     }
 
+    /**
+     * 1，展示加载loading
+     */
     @Override
     public void showLoading() {
         if (mLoadService != null) {
@@ -98,6 +116,9 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
     }
     private boolean isShowedContent = false;
 
+    /**
+     *2， 展示内容
+     */
     @Override
     public void showContent() {
         if (mLoadService != null) {
@@ -108,11 +129,18 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
 
     protected abstract void onRetryBtnClick();
 
+    /**
+     * 5,加载更多失败
+     * @param message
+     */
     @Override
     public void onLoadMoreFailure(String message) {
         ToastUtil.show(getContext(), message);
     }
 
+    /**
+     * 6,没哟更多数据
+     */
     @Override
     public void onLoadMoreEmpty() {
         ToastUtil.show(getContext(), getString(R.string.no_more_data));
