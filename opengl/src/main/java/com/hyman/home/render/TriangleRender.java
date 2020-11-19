@@ -1,27 +1,30 @@
-package com.hyman.opengl.render;
+package com.hyman.home.render;
 
 import android.opengl.GLES20;
-import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class Square extends GLRender {
-
+public class TriangleRender extends GLRender {
+    private int mProgram;
     private FloatBuffer vertexBuffer;
-    private ShortBuffer indexBuffer;
+
+    /**
+     * 顶点着色器
+     */
     private final String vertexShaderCode =
             "attribute vec4 vPosition;" +
-                    "uniform mat4 vMatrix;"+
                     "void main() {" +
-                    "  gl_Position = vMatrix*vPosition;" +
+                    "  gl_Position = vPosition;" +
                     "}";
 
+    /**
+     * 片段着色器
+     */
     private final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 vColor;" +
@@ -29,63 +32,45 @@ public class Square extends GLRender {
                     "  gl_FragColor = vColor;" +
                     "}";
 
-    private int mProgram;
-
-    static final int COORDS_PER_VERTEX = 3;
     static float triangleCoords[] = {
-            -0.5f,  0.5f, 0.0f, // top left
+            0.5f,  0.5f, 0.0f, // top
             -0.5f, -0.5f, 0.0f, // bottom left
-            0.5f, -0.5f, 0.0f, // bottom right
-            0.5f,  0.5f, 0.0f  // top right
+            0.5f, -0.5f, 0.0f  // bottom right
     };
 
-    static short index[]={
-            0,1,2,0,2,3
-    };
+    //设置颜色，依次为红绿蓝和透明通道
+    float color[] = { 1.0f, 0f, 0f, 1.0f };
+    static final int COORDS_PER_VERTEX = 3;
 
     private int mPositionHandle;
     private int mColorHandle;
-
-    private float[] mViewMatrix=new float[16];
-    private float[] mProjectMatrix=new float[16];
-    private float[] mMVPMatrix=new float[16];
 
     //顶点个数
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     //顶点之间的偏移量
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 每个顶点四个字节
 
-    private int mMatrixHandler;
-
-    //设置颜色，依次为红绿蓝和透明通道
-    float color[] = { 1.0f, 0f, 0f, 1.0f };
-
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        ByteBuffer bb = ByteBuffer.allocateDirect(
-                triangleCoords.length * 4);
+        //将背景设置为灰色
+        GLES20.glClearColor(0.5f,0.5f,0.5f,1.0f);
+        //申请底层空间
+        ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
+        //将坐标数据转换为FloatBuffer，用以传入OpenGL ES程序
         vertexBuffer = bb.asFloatBuffer();
         vertexBuffer.put(triangleCoords);
         vertexBuffer.position(0);
 
-        ByteBuffer cc= ByteBuffer.allocateDirect(index.length*2);
-        cc.order(ByteOrder.nativeOrder());
-        indexBuffer=cc.asShortBuffer();
-        indexBuffer.put(index);
-        indexBuffer.position(0);
-
-        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER,
-                vertexShaderCode);
-        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER,
-                fragmentShaderCode);
+        int vertexShader =  loadShader(GLES20.GL_VERTEX_SHADER,vertexShaderCode);
+        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER,fragmentShaderCode);
 
         //创建一个空的OpenGLES程序
         mProgram = GLES20.glCreateProgram();
         //将顶点着色器加入到程序
-        GLES20.glAttachShader(mProgram, vertexShader);
+        GLES20.glAttachShader(mProgram,vertexShader);
         //将片元着色器加入到程序中
-        GLES20.glAttachShader(mProgram, fragmentShader);
+        GLES20.glAttachShader(mProgram,fragmentShader);
         //连接到着色器程序
         GLES20.glLinkProgram(mProgram);
 
@@ -93,25 +78,14 @@ public class Square extends GLRender {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        //计算宽高比
-        float ratio=(float)width/height;
-        //设置透视投影
-        Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
-        //设置相机位置
-        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-        //计算变换矩阵
-        Matrix.multiplyMM(mMVPMatrix,0,mProjectMatrix,0,mViewMatrix,0);
-
+        GLES20.glViewport(0,0,width,height);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
-        //获取变换矩阵vMatrix成员句柄
-        mMatrixHandler= GLES20.glGetUniformLocation(mProgram,"vMatrix");
-        //指定vMatrix的值
-        GLES20.glUniformMatrix4fv(mMatrixHandler,1,false,mMVPMatrix,0);
+
         //获取顶点着色器的vPosition成员句柄
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
         //启用三角形顶点的句柄
@@ -125,11 +99,8 @@ public class Square extends GLRender {
         //设置绘制三角形的颜色
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
         //绘制三角形
-//        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
-        //索引法绘制正方形
-        GLES20.glDrawElements(GLES20.GL_TRIANGLES,index.length, GLES20.GL_UNSIGNED_SHORT,indexBuffer);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
         //禁止顶点数组的句柄
         GLES20.glDisableVertexAttribArray(mPositionHandle);
-
     }
 }

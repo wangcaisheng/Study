@@ -1,4 +1,4 @@
-package com.hyman.opengl;
+package com.hyman.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +10,9 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
 import com.arch.demo.core.utils.LogUtil;
-import com.hyman.opengl.render.Square;
-import com.hyman.opengl.render.TriangleRender;
-import com.hyman.opengl.render.GLRender;
+import com.hyman.home.render.Square;
+import com.hyman.home.render.TriangleRender;
+import com.hyman.home.render.GLRender;
 
 public class GlMainActivity extends AppCompatActivity {
 

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HomeArc</string>
+    <string name="menu_home">首页</string>
+    <string name="menu_categories">工具</string>
+    <string name="menu_services">消息</string>
+    <string name="menu_account">我的</string>
+</resources>

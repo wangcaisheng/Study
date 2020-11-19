@@ -1,14 +1,11 @@
-package com.hyman.opengl.render;
+package com.hyman.home.render;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
 /**
  * 静态导入
  */
-import static android.opengl.GLES20.*;
 
 
 /**
