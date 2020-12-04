@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SeekBarActivity"/>
+
+        <activity android:name=".SubActivity"/>
+        <activity android:name=".FatherActivity"/>
 
     </application>
 

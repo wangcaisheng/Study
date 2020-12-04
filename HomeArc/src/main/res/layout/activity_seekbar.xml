@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0000ff">
+
+    <include layout="@layout/title" />
+
+    <!--  <androidx.viewpager.widget.ViewPager
+          android:id="@+id/viewpager"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/ori_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:maxHeight="2dp"
+            android:minHeight="2dp"
+            android:padding="5dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progressDrawable="@drawable/my_seekbar_style"
+            android:thumb="@drawable/seekbar_thumb"
+            android:thumbOffset="0dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_seekbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="80dp">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:padding="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:progressDrawable="@drawable/my_seekbar_style"
+                android:thumb="@drawable/seekbar_thumb"
+                android:thumbOffset="0dp" />
+
+            <SeekBar
+                android:id="@+id/seekbar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:maxHeight="4dp"
+                android:minHeight="4dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:progressDrawable="@drawable/my_seekbar_style_white"
+                android:thumb="@drawable/seekbar_thumb_white"
+                android:thumbOffset="0dp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+        <com.hyman.home.custom.SuperSeekBar
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_seekbar_container"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Activity继承，抽取公共部分" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="我在最底部" />
+
+</RelativeLayout>

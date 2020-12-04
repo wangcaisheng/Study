@@ -23,8 +23,8 @@
                 <!--android:centerY="0.75"-->
                 <!--android:endColor="#ff6699CC"-->
                 <!--android:startColor="#ff0099CC" />-->
-              <!--  <solid android:color="#32ffffff" />-->
-                <solid android:color="#ffffffff" />
+                <solid android:color="#32ffffff" />
+              <!--  <solid android:color="#ffffffff" />-->
                 <size android:height="2dp"/>
             </shape>
         </clip>
