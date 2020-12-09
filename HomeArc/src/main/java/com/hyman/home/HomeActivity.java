@@ -1,5 +1,6 @@
 package com.hyman.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,8 @@ public class HomeActivity extends AppCompatActivity {
     Button bt2;
     @BindView(R.id.bt3)
     Button bt3;
+    @BindView(R.id.bt4)
+    Button bt4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.bt1, R.id.bt2})
+    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3,R.id.bt4,R.id.bt5})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt1:
@@ -47,7 +50,14 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.bt3:
                 break;
+            case R.id.bt4:
+                CustomViewActivity.open(this);
+                break;
+            case R.id.bt5:
+                startActivity(new Intent(this,KotlinActivity.class));
+                break;
         }
     }
+
 
 }

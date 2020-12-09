@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TranslucentTheme">
+        <activity android:name=".KotlinActivity"></activity>
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,11 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SeekBarActivity"/>
-
-        <activity android:name=".SubActivity"/>
-        <activity android:name=".FatherActivity"/>
-
+        <activity android:name=".SeekBarActivity" />
+        <activity android:name=".SubActivity" />
+        <activity android:name=".FatherActivity" />
+        <activity android:name=".CustomViewActivity" />
     </application>
 
 </manifest>

@@ -29,6 +29,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dagger2"/>
+        <Button
+            android:id="@+id/bt4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义火萤分享框容器"/>
+        <Button
+            android:id="@+id/bt5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kotlin模块"/>
 
     </LinearLayout>
 
