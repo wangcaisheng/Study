@@ -23,6 +23,11 @@ android {
         }
     }
 
+   /* 新建kotlin目录需要这个配置*/
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
