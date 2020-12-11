@@ -68,5 +68,12 @@ class KotlinActivity : AppCompatActivity() {
         return userNames
     }
 
+    /**
+     * 属性与支持属性
+     *
+     * 支持属性为了解决属性可以被使用者修改问题
+     */
+
+    // TODO: 2020/12/11 扩展函数 扩展属性 
 
 }
