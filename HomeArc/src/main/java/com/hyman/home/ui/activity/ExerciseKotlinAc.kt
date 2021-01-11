@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.hyman.home.R
+import com.hyman.home.adapter.FruitAdapter
 import kotlinx.android.synthetic.main.ac_exercise.*
 
 class ExerciseKotlinAc : AppCompatActivity(), View.OnClickListener {
@@ -15,6 +16,11 @@ class ExerciseKotlinAc : AppCompatActivity(), View.OnClickListener {
         super.setContentView(layoutResID)
         setContentView(R.layout.ac_exercise)
         dealClick()
+        dealListView()
+    }
+
+    private fun dealListView() {
+        val adapterView= FruitAdapter()
     }
 
     private fun dealClick() {
