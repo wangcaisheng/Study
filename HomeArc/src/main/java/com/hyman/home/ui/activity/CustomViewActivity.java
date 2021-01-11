@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.hyman.home.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -66,6 +66,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+//各module依赖的版本号一致，否则会引起冲突
 ext {
     minSdkVersion = 16
     targetSdkVersion = 28

@@ -1,0 +1,20 @@
+1月11日
+用kotlin写了StandardFunctionAc、ExerciseKotlinAc类
+标准函数：with run  apply
+val result=with(obj){
+ //这里是obj的上下文
+  “value” //with函数返回值；（最后一行作为返回值）
+}
+说明：with函数只接收两个值；第一任意类型对象  第二个Lambda表达式
+
+val result=obj.run{
+ //这里是obj的上下文
+  “value” //run函数返回值；（最后一行作为返回值）
+}
+说明：要被一个对象调用，只有一个Lambda表达式参数
+
+val result=obj.apply{
+ //这里是obj的上下文
+}
+result==obj  //true
+说明：要被一个对象调用，只有一个Lambda表达式参数,返回的是调用者本身

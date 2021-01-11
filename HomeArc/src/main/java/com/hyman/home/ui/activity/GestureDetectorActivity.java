@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GestureDetectorCompat;
 
-import com.hyman.home.custom.MyOnTouch;
+import com.hyman.home.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

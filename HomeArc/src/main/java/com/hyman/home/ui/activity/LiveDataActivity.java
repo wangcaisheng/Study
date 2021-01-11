@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +8,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 
 import com.arch.demo.core.utils.ToastUtil;
+import com.hyman.home.R;
 
 /**
  * @author: Hyman

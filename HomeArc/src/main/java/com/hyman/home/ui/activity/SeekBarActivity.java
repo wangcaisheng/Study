@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.arch.demo.core.utils.ToastUtil;
+import com.hyman.home.R;
 
 /**
  * @author: Hyman

@@ -1,4 +1,4 @@
-package com.hyman.home.fragment
+package com.hyman.home.ui.fragment
 
 import android.content.Context
 import android.os.Bundle

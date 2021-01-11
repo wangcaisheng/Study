@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
  * time: 2020/11/19 下午8:43
  * des:
  */
-public class SubActivity extends FatherActivity{
+public class SubActivity extends FatherActivity {
 
 
     public static void open(Activity activity) {

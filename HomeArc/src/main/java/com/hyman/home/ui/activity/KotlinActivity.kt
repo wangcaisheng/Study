@@ -1,7 +1,8 @@
-package com.hyman.home
+package com.hyman.home.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hyman.home.R
 import com.hyman.home.bean.User
 
 /**

@@ -2,14 +2,14 @@ package com.hyman.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.hyman.home.adapter.VpAdapter
-import com.hyman.home.fragment.Fragment1
-import com.hyman.home.fragment.Fragment2
-import com.hyman.home.fragment.Fragment3
-import com.hyman.home.fragment.Fragment4
+import com.hyman.home.ui.activity.HomeActivity
+import com.hyman.home.ui.fragment.Fragment1
+import com.hyman.home.ui.fragment.Fragment2
+import com.hyman.home.ui.fragment.Fragment3
+import com.hyman.home.ui.fragment.Fragment4
 import kotlinx.android.synthetic.main.activity_vp_fragment.*
 
 /**

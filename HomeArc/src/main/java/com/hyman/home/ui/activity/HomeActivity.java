@@ -1,4 +1,4 @@
-package com.hyman.home;
+package com.hyman.home.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.hyman.home.R;
+import com.hyman.home.ViewPagerAndFragmentLazyLoad;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     Button bt7;
     @BindView(R.id.bt8)
     Button bt8;
+    @BindView(R.id.bt9)
+    Button bt9;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,10 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home);
         ButterKnife.bind(this);
 
-
     }
 
-    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3,R.id.bt4,R.id.bt5,R.id.bt6,R.id.bt7,R.id.bt8})
+    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3,R.id.bt4,R.id.bt5,R.id.bt6,R.id.bt7,R.id.bt8,R.id.bt9})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt1:
@@ -62,16 +66,19 @@ public class HomeActivity extends AppCompatActivity {
                 CustomViewActivity.open(this);
                 break;
             case R.id.bt5:
-                startActivity(new Intent(this,KotlinActivity.class));
+                startActivity(new Intent(this, KotlinActivity.class));
                 break;
             case R.id.bt6:
-                startActivity(new Intent(this,LiveDataActivity.class));
+                startActivity(new Intent(this, LiveDataActivity.class));
                 break;
             case R.id.bt7:
                 ViewPagerAndFragmentLazyLoad.startMe(this);
                 break;
             case R.id.bt8:
                 Alpa0Activity.startMe(this);
+                break;
+            case R.id.bt9:
+                KotlinHomeActivity.startMe(this);
                 break;
         }
     }
