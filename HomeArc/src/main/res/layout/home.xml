@@ -40,6 +40,22 @@
             android:layout_height="wrap_content"
             android:text="Kotlin模块"/>
 
+        <Button
+            android:id="@+id/bt6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About Live Data"/>
+        <Button
+            android:id="@+id/bt7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ViewPager+Fragment懒加载"/>
+        <Button
+            android:id="@+id/bt8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alpa0 Activity"/>
+
     </LinearLayout>
 
 

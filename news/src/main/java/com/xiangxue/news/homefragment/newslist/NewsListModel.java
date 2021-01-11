@@ -13,10 +13,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
 public class NewsListModel<T> extends BasePagingModel<T> {
     private String mChannelId = "";
     private String mChannelName = "";

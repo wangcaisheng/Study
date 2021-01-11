@@ -21,6 +21,12 @@
         <activity android:name=".SubActivity" />
         <activity android:name=".FatherActivity" />
         <activity android:name=".CustomViewActivity" />
+        <activity android:name=".LiveDataActivity"/>
+        <activity android:name=".ViewPagerAndFragmentLazyLoad"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Alpa0Activity"
+            android:theme="@style/MyTranslucentTheme"/>
     </application>
 
 </manifest>
