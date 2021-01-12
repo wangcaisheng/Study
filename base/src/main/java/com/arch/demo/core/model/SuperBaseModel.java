@@ -20,10 +20,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
+
 public abstract class SuperBaseModel<T> {
     protected Handler mUiHandler = new Handler(Looper.getMainLooper());
     //RxJava防止内存泄漏

@@ -39,5 +39,5 @@ dependencies {
     }
 
     implementation "androidx.cardview:cardview:$rootProject.androidXVersion"
-    api project(':xiangxuewebview')
+    api project(':fzwebview')
 }

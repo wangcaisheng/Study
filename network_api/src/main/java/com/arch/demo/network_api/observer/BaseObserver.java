@@ -8,10 +8,7 @@ import com.arch.demo.network_api.errorhandler.ExceptionHandle;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
+
 public abstract class BaseObserver<T> implements Observer<T> {
     SuperBaseModel baseModel;
     public BaseObserver(SuperBaseModel baseModel) {

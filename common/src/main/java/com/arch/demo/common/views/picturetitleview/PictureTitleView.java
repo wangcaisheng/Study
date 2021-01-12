@@ -9,10 +9,6 @@ import com.arch.demo.common.R;
 import com.arch.demo.common.webview.WebActivity;
 import com.arch.demo.core.customview.BaseCustomView;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
 public class PictureTitleView extends BaseCustomView<PictureTitleViewBinding, PictureTitleViewViewModel> {
     public PictureTitleView(Context context) {
         super(context);

@@ -2,10 +2,6 @@ package com.arch.demo.core.model;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
 public abstract class BaseModel<T> extends SuperBaseModel<T> {
     /**
      *  加载网络数据成功
