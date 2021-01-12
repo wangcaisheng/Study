@@ -18,3 +18,7 @@ val result=obj.apply{
 }
 result==obj  //true
 说明：要被一个对象调用，只有一个Lambda表达式参数,返回的是调用者本身
+
+1月12日
+类型强制转换：as
+age:val activity=context as Activity

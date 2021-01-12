@@ -2,25 +2,35 @@ package com.hyman.home.ui.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.hyman.home.R
+import com.hyman.home.R2.id.list_item
 import com.hyman.home.adapter.FruitAdapter
 import kotlinx.android.synthetic.main.ac_exercise.*
 
 class ExerciseKotlinAc : AppCompatActivity(), View.OnClickListener {
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
+
+    val data= listOf("Apple","Banana","Orange","Pear")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.ac_exercise)
         dealClick()
         dealListView()
     }
 
+
     private fun dealListView() {
-        val adapterView= FruitAdapter()
+        //1,用系统的Adapter
+        val adapterView= ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,data)
+        list_view.adapter=adapterView
+
     }
 
     private fun dealClick() {
