@@ -51,6 +51,11 @@
         android:textAllCaps="false"
         android:text="AlertDialog"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="listView填充数据："/>
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"

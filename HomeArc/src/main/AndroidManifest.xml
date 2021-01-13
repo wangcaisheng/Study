@@ -30,6 +30,8 @@
         <activity android:name=".ui.activity.KotlinHomeActivity"/>
         <activity android:name=".ui.activity.StandardFunctionAc"/>
         <activity android:name=".ui.activity.ExerciseKotlinAc"/>
+        <activity android:name=".ui.activity.GestureDetectorActivity"/>
+        <activity android:name=".ui.activity.ListRecActivity"/>
     </application>
 
 </manifest>

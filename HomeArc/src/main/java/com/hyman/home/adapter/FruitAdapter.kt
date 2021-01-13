@@ -1,32 +1,42 @@
 package com.hyman.home.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import com.hyman.home.R
 
-class FruitAdapter : BaseAdapter() {
+class FruitAdapter(activity: Activity, private val resId:Int, private val data:List<String>): ArrayAdapter<String>(activity,resId,data) {
 
+    /**
+     *重写改方法
+     */
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view:View
+        val viewHolder:ListViewHolder
+        if(convertView==null){
+            view=LayoutInflater.from(context).inflate(resId,parent,false)
+            val iv:ImageView=view.findViewById(R.id.item_iv)
+            val tv:TextView=view.findViewById(R.id.item_tv)
+            viewHolder=ListViewHolder(iv,tv)
+            view.tag=viewHolder
+        }else{
+            view=convertView
+            viewHolder=view.tag as ListViewHolder
+        }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-       val view:View?
-//       if(convertView==null){
-//           view=LayoutInflater.from().inflate()
-//       }
-//       return view;
-        TODO("Not yet implemented")
+        val itemData=data.get(position)
+        if(itemData.isNullOrEmpty()){
+            viewHolder.tv.text=itemData
+        }
+
+        return view
     }
 
-    override fun getItem(position: Int): Any {
-        TODO("Not yet implemented")
-    }
 
-    override fun getItemId(position: Int): Long {
-        TODO("Not yet implemented")
-    }
-
-    override fun getCount(): Int {
-        TODO("Not yet implemented")
-    }
+    inner class ListViewHolder(val iv: ImageView,val tv: TextView)
 
 }

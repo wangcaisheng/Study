@@ -20,5 +20,9 @@ result==obj  //true
 说明：要被一个对象调用，只有一个Lambda表达式参数,返回的是调用者本身
 
 1月12日
-类型强制转换：as
+1,类型强制转换：as
 age:val activity=context as Activity
+
+2,adapter中的ViewHolder可以用内部类 inner class
+ age:  inner class ListViewHolder(val iv: ImageView,val tv: TextView)  //说明。参数要用val声明，否则拿不到iv属性
+
