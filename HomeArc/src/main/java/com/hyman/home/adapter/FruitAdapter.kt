@@ -9,34 +9,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.hyman.home.R
 
-class FruitAdapter(activity: Activity, private val resId:Int, private val data:List<String>): ArrayAdapter<String>(activity,resId,data) {
+class FruitAdapter(activity: Activity, private val resId: Int, private val data: List<String>) : ArrayAdapter<String>(activity, resId, data) {
 
     /**
      *重写改方法
      */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view:View
-        val viewHolder:ListViewHolder
-        if(convertView==null){
-            view=LayoutInflater.from(context).inflate(resId,parent,false)
-            val iv:ImageView=view.findViewById(R.id.item_iv)
-            val tv:TextView=view.findViewById(R.id.item_tv)
-            viewHolder=ListViewHolder(iv,tv)
-            view.tag=viewHolder
-        }else{
-            view=convertView
-            viewHolder=view.tag as ListViewHolder
+        val view: View
+        val viewHolder: ListViewHolder
+        if (convertView == null) {
+            view = LayoutInflater.from(context).inflate(resId, parent, false)
+            val iv: ImageView = view.findViewById(R.id.item_iv)
+            val tv: TextView = view.findViewById(R.id.item_tv)
+            viewHolder = ListViewHolder(iv, tv)
+            view.tag = viewHolder
+        } else {
+            view = convertView
+            viewHolder = view.tag as ListViewHolder
         }
 
-        val itemData=data.get(position)
-        if(itemData.isNullOrEmpty()){
-            viewHolder.tv.text=itemData
-        }
+        val itemData = data[position]
+        viewHolder.tv.text = itemData
 
         return view
     }
 
 
-    inner class ListViewHolder(val iv: ImageView,val tv: TextView)
+    inner class ListViewHolder(val iv: ImageView, val tv: TextView)
 
 }

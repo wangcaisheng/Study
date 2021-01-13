@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.hyman.home.R
-import com.hyman.home.adapter.RecAdapter.NativeViewHolder
 import com.hyman.home.bean.Fruit
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class RecAdapter(private val fruitList :List<Fruit>,private val res:Int) : RecyclerView.Adapter<NativeViewHolder>() {
+class RecAdapterTwo(private val fruitList :List<Fruit>, private val res:Int) : RecyclerView.Adapter<RecAdapterTwo.NativeViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NativeViewHolder {
@@ -22,6 +22,9 @@ class RecAdapter(private val fruitList :List<Fruit>,private val res:Int) : Recyc
 
     override fun onBindViewHolder(holder: NativeViewHolder, position: Int) {
         holder.textView.text= fruitList[position].fruitName
+        holder.itemView.setOnClickListener{
+            Toast.makeText(holder.textView.context,"$position",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {

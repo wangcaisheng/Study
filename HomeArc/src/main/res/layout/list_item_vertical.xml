@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:background="#0000f3"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/item_iv"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/ic_launcher_foreground"/>
+        android:background="#00ff00"/>
     <TextView
         android:id="@+id/item_tv"
         android:text="nihao"

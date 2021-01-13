@@ -26,6 +26,10 @@ class KotlinHomeActivity : AppCompatActivity() {
         bt3.setOnClickListener{
             ListRecActivity.startMe(this)
         }
+
+        bt4.setOnClickListener{
+
+        }
     }
 
     companion object {

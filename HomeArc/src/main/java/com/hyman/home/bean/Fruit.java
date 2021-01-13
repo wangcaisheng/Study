@@ -7,7 +7,7 @@ package com.hyman.home.bean;
  */
 public class Fruit {
 
-    public Fruit(String name,String res){
+    public Fruit(String res,String name){
         fruitName=name;
         fruitRes=res;
     }

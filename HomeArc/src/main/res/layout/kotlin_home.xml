@@ -23,4 +23,11 @@
         android:textAllCaps="false"
         android:text="列表页面"/>
 
+    <Button
+        android:id="@+id/bt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="RecycleView实现的聊天界面"/>
+
 </LinearLayout>
