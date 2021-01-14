@@ -26,3 +26,24 @@ age:val activity=context as Activity
 2,adapter中的ViewHolder可以用内部类 inner class
  age:  inner class ListViewHolder(val iv: ImageView,val tv: TextView)
 
+ 1月13日
+ 1,kotlin中定义常量的关键字是const,只能在 companion object 、 单例类 、顶层作用域中使用const关键字
+ 2, addToBackStack()方法将Fragment加如栈中，可以像Activity一样一个一个返回。
+
+
+ 1月14日
+ 扩展函数：
+ 作用：即使在不修改类原码的情况下，仍然可以打开这个类，向这个类中添加新的函数。（所有的类，包括final修饰的类）
+ 定义位置：1，创建文件定义函数   2，定义在现有类当中
+
+ 运算符重载
+ 作用：允许我们对运算符进行扩展。比如可以让两个对象相加。
+ 用的关键字：operator。
+ 用法：使用operator关键字，在"指定函数"前面加关键字，就可以用运算符重载功能啦。
+ 语法结构：
+  class obj{
+   operator fun plus(obj:Obj){
+     //处理相加逻辑
+   }
+  }
+
