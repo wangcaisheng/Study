@@ -46,4 +46,163 @@ age:val activity=context as Activity
      //处理相加逻辑
    }
   }
+1月15日
+ 高阶函数
+  1，kotlin增加一种类型：函数类型
+  2，高阶函数：如果一个函数接收另一个函数作为参数，或者返回值类型是一个函数，那么该函数就成为高阶函数。
+  3，定义函数类型
+   语法规则： （String，Int）->Unit
+   说明：->左边声明函数接收什么参数，如果没有参数写（）
+        ->右边用于声明函数返回值是什么类型。没有返回值就用Unit，相当于Java的void
+   4，定义高阶函数
+   age1:
+    fun example(func:(String,Int)->Unit){
+     func("hello",123)
+    }
 
+    age2:
+    fun num1AndNum2(num1:Int,num2:Int,operation:(Int,Int)->Int):Int{
+        return operation(num1,num2)
+    }
+    (另见:kotlin文件夹下：HigherOrderFunction文件)
+   5,使用高阶函数（函数引用，Lambda表达式，匿名函数，成员引用）
+    5.1函数引用的方式使用高级函数：num1AndNum2(num1,num2,::plus)
+    5.2Lambda表达式，不需要定义函数，直接用Lambda
+      val result3=num1AndNum2(num1,num2){ n1: Int, n2: Int ->
+             n1+n2
+         }
+         (tip:最后一行代码作为返回值)
+   6,kotlin标准函数apply等的原理及时借助高阶函数实现的，这些标准函数作用在所有类上，需要借助泛型
+   7，高阶函数Lambda的实现原理是借助底层被转换成匿名类的方式实现，这就存在每调用一次Lambda表达式
+      都会创建一个新的匿名类实例，造成额外的内存和性能开销。（可以借助内联函数解决这个问题）
+
+ 内联函数
+ 1，在定义高阶函数时加上inline关键字声明就是内联函数。
+ //定义内联函数
+ inline fun n1AndN2(num2:Int,num1:Int,operation:(Int,Int)->Int):Int{
+     return operation(num1,num2)
+ }
+ 2，内联函数工作原理：
+  Kotlin编译器会将内联函数中的代码在编译的时候自动替换到调用它的地方，这样就不存在运行时的开销了。
+  替换过程见（第一行代码：P267）
+ 3,（noinline）非内联函数只能进行局部返回：return@函数名
+   内联函数可以用return关键字进行函数返回。
+   如果高阶函数中创建了另外的Lambda或者匿名类的实现，并且这些实现中调用函数类型参数，此时又将高阶函数
+   声明成内联函数，就会提示错误。这是因为在匿名类中调用的函数类型参数是不可能进行外层调用函数返回的。可以用
+   crossinline声明：一定不会调用return。（仍然可以调用return@函数名）
+
+   KTX扩展库
+   高阶函数是非常适用于简化各种API的调用。Google提供了 KTX扩展库中包含了各种定义的高阶函数，简化了API调用
+   age:
+   getSharedPreferences("data",Context.MODE_PRIVATE).edit{
+     putString("name","hyman")
+     putInt("age",20)
+   }
+
+   age:
+   val values=contentValuesOf("name" to "hyman","age" to 20)
+   db.insert("数据库表",null,values)
+
+   Pair：
+   Pair类型是键、值对数据结构。通过泛型置顶key value 分别是什么类型
+    age:vararg pairs:Pair<String,Any?>
+    tip1:在Kotlin中，Any是所有类的基类。 Any?表示可以是任何类型，且可以为空
+    tip2:vararg修饰代表是可变参数
+    tip3: A to B语法结构 组成键、值对，创建出Pair类型
+
+ 顶层函数：不定义在任何类当中的函数才是顶层函数
+ age://later函数是个顶层函数
+ fun <T> later(block:()->T)=Later(block)
+ //这个函数的作用：创建Later类的实例，并将接收的函数类型的参数传给Later类的构造函数
+ class Later<T>(val block: () -> T) {
+     var value: Any? = null  //使用这个变量对值进行缓存
+     operator fun getValue(any: Any?, prop: KProperty<*>): T {
+         if (value == null) {
+             value = block()
+         }
+         return value as T
+     }
+ }
+
+泛型
+ 泛型的定义方式：一种是定义泛型类；一种是定义泛型方法
+ age://定义泛型类
+ class MyClass<T>{
+   fun method(param:T):T{
+       ...
+   }
+ }
+
+ age://定义泛型方法
+ class MyClass{
+   fun <T> method(param:T):T{
+       ...
+     return param
+   }
+ }
+ //调用泛型方法：
+ val myClass=MyClass()
+ val result=myClass.method<Int>(123) //调用方式一
+ val result=myClass.method(123) //因为传的参数123是Int型，根据类型推导知道类型是Int型，所以<Int>可以省略
+
+ //泛型类型限制：
+  fun <T：Number> method(param:T):T{
+        ...
+      return param
+    }
+  tip：传的泛型必须是数字型的
+
+泛型的高级应用
+ 1，泛型实化
+   函数必须是内联函数；声明泛型的地方必须加上reified关键字。
+   age： inline fun<reified T> getGenericType(){}
+ 2,泛型实化的应用
+  2.1泛型实化允许我们在泛型函数中获得泛型的实际类型
+  2.2 开启Activity方法替代（见reified.kt）
+
+
+类委托与委托属性(Later.kt)
+  委托：委托是一种设计模式。操作对象不会自己去处理某段逻辑，而是会把工作委托给另外一个辅助对象去处理。
+  委托的关键字是：by
+  委托类age：
+  class MySet<T>(val helperSet:HashSet<T>):Set<T> by helperSet{
+     fun helloWord()=println("Hello World") //新增的方法
+     override fun isEmpty()=false //对isEmpty()方法进行重新实现
+  }
+  tip:helperSet是一个辅助对象。将MySet类中的一些方法委托给了helperSet来实现。
+  tip：helperSet中的方法，MySet类中都可以调用，并可以增加新的方法和重新MySet类中的方法。
+
+  类委托的核心思想是将一个类的具体实现委托给另一个类去实现，而委托属性的核心思想是将一个属性（字段）
+  的具体实现委托给另一个类去实现。
+  委托属性age：
+  class MyClass{
+    var p by Delegate()//这种写法就代表着将p属性的具体实现委托给了Delegate类去完成
+  }
+  //Delegate类必须实现getValue() setValue()方法。方法必须用operator关键字声明
+  class Delegate{
+     var propValue:Any?=null
+     //第一个参数表示代理那个对象；第二个是属性操作类（用于获取各种属性相关的值）
+     operator fun getValue(any: Any?, prop: KProperty<*>): Any?{
+
+     }
+     operator fun setValue(any: Any?, prop: KProperty<*>,value:Any?){
+
+     }
+  }
+
+infix函数（作用：允许我们将小数点、括号等计算机相关语法结构去掉，从而使用一种更接近英语的语法来编写程序）
+ 1，A to B 这种语法结构；to并不是关键字，之所以可以这样用是因为Kotlin提供了一种高级语法糖特性：infix函数
+ 2，infix函数只是把编程语言函数调用的语法规则调整了一下。A to B等价于：A.to(B)
+ 3,语法规则：在函数前面加上infix 关键字
+ 4，infix函数的两个限制：
+   4.1：infix函数不能定义成顶层函数，必须是某个类的成员函数，可以使用扩展函数的方式将他定义到某个类中
+   4.2：infix函数必须接收且只能接收一个参数
+
+ 5,//A to B,to()函数的源码：
+ public infix fun <A,B> A.to(that:B) :Pair<A,B>=Pair(this,that)
+ tip:使用定义泛型函数的方式，将to()函数定义到A类型下，接收B类型参数，返回Pair对象。
+
+协程
+  1，概念：协程类似于线程。线程是非常重量级的，需要依赖操作系统的调度才能实现不同线程之间的切换。协程仅在编程语言的层面就能实现不同
+  协程之间的切换。
+  2,GlobalScope.launch函数可以创建一个协程作用域。它每次创建的都是一个顶层协程，这种协程在应用程序运行结束时会跟着一起结束。
