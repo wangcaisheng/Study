@@ -6,3 +6,5 @@ if (gradle.ext.includeXiangxueBaseSource) {
 }
 include ':app', ':network_api', ':common', ':usercenter', ':news', "fzwebview"
 
+include ':airHockey1'
+include ':liveWallpaper'
