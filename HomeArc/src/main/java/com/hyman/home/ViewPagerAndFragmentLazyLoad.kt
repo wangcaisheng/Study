@@ -16,6 +16,10 @@ import kotlinx.android.synthetic.main.activity_vp_fragment.*
  *@author: Hyman
  *time: 2021/1/6 下午7:54
  *des:
+ * 测试ViewPager+fragment懒加载
+ * 1，Fragment继承BaseLazyFragment
+ * 2, Adapter继承 FragmentPagerAdapter(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+ *
  */
 class ViewPagerAndFragmentLazyLoad : AppCompatActivity() {
 
