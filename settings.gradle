@@ -8,3 +8,11 @@ include ':app', ':network_api', ':common', ':usercenter', ':news', "fzwebview"
 
 include ':airHockey1'
 include ':liveWallpaper'
+
+
+include ':asm'//仅用于标识asm文件夹,防止误删
+file('asm').eachDir { dir ->
+    include dir.name
+    project(":${dir.name}").projectDir = dir
+}
+include ':asmtrace'

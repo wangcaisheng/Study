@@ -33,11 +33,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://kotlin.bintray.com/kotlinx/" }
-        maven {
-            url "https://jitpack.io"
-        }
-
         maven {
             url 'https://maven.aliyun.com/repository/google'
         }
@@ -46,6 +41,10 @@ allprojects {
         }
         maven {
             url 'https://maven.aliyun.com/repository/public'
+        }
+        maven { url "https://kotlin.bintray.com/kotlinx/" }
+        maven {
+            url "https://jitpack.io"
         }
         google()
         jcenter()
@@ -59,8 +58,8 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task test{
-    doLast{
+task test {
+    doLast {
         print("Hello world")
     }
 }
