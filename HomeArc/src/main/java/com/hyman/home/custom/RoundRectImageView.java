@@ -6,9 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 @SuppressLint("AppCompatCustomView")
-public class RoundRectImageView extends ImageView {
+public class RoundRectImageView extends RelativeLayout {
     private RoundViewDelegate mRoundViewDelegate;
     public RoundRectImageView(Context context) {
         super(context,null);
