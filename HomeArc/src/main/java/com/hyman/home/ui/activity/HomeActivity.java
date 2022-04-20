@@ -1,16 +1,24 @@
 package com.hyman.home.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hyman.home.R;
 import com.hyman.home.ViewPagerAndFragmentLazyLoad;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,12 +50,19 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.bt9)
     Button bt9;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        fullScreen(this);
+        getWindow().setStatusBarColor(Color.RED);
         setContentView(R.layout.home);
         ButterKnife.bind(this);
+
+        Log.e("Hyman","getExternalCacheDir()="+getExternalCacheDir().getPath());
+        Log.e("Hyman","getExternalFilesDir(nim)="+getExternalFilesDir("nim").getPath());
+        Log.e("Hyman","getCacheDir()="+getCacheDir().getPath());
+        Log.e("Hyman","getFilesDir()="+getFilesDir().getPath());
 
     }
 
@@ -80,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.bt9:
                 KotlinHomeActivity.startMe(this);
                 break;
+
         }
     }
 

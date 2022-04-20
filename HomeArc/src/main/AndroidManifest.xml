@@ -11,7 +11,8 @@
         android:name="com.arch.demo.core.BaseApplication"
         android:theme="@style/TranslucentTheme">
         <activity android:name=".ui.activity.KotlinActivity"></activity>
-        <activity android:name=".ui.activity.HomeActivity">
+        <activity android:name=".ui.activity.HomeActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
