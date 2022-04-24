@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.ImageSpan
 import android.text.style.UnderlineSpan
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -28,8 +30,8 @@ class SpannableStringAct : AppCompatActivity() {
         spannableStringBuilder.apply {
             append(list[0])
                 //可以点击，字体蓝色
-                .append(list[1], BackgroundColorSpan(Color.BLUE), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                .setSpan(UnderlineSpan(),0,list[1].length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                .append(list[1], ForegroundColorSpan(Color.BLUE), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                .append("icon", ImageSpan(this@SpannableStringAct,R.mipmap.icon_editor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 .append(list[2])
                 .append(list[3], UnderlineSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 

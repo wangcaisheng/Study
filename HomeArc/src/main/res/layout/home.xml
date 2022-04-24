@@ -89,17 +89,6 @@
                 android:onClick="bt10"
                 android:textAllCaps="false" />
 
-           <com.hyman.home.custom.RoundRectImageView
-               android:layout_margin="20dp"
-               android:layout_width="match_parent"
-               android:layout_height="100dp"
-               android:background="@color/black">
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="我是"
-                   android:textColor="@color/colorAccent"/>
-           </com.hyman.home.custom.RoundRectImageView>
 
         </LinearLayout>
     </ScrollView>

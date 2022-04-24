@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
     Button bt8;
     @BindView(R.id.bt9)
     Button bt9;
+    @BindView(R.id.bt10)
+    Button bt10;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -66,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3,R.id.bt4,R.id.bt5,R.id.bt6,R.id.bt7,R.id.bt8,R.id.bt9})
+    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3,R.id.bt4,R.id.bt5,R.id.bt6,R.id.bt7,R.id.bt8,R.id.bt9,R.id.bt10})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt1:
@@ -95,13 +98,12 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.bt9:
                 KotlinHomeActivity.startMe(this);
                 break;
-
+            case R.id.bt10:
+                startActivity(new Intent(this,SpannableStringAct.class));
+                break;
         }
     }
 
-    public void bt10(View view) {
-        startActivity(new Intent(this,SpannableStringAct.class));
-    }
 
 
 }
