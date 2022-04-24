@@ -5,11 +5,11 @@ import android.os.Build
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.text.style.BackgroundColorSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.ImageSpan
-import android.text.style.UnderlineSpan
+import android.text.method.LinkMovementMethod
+import android.text.style.*
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,25 +19,46 @@ class SpannableStringAct : AppCompatActivity() {
 
     private val list = listOf("我参加工作时间", "2015.7", "至2019.8", "获得工资300万")
 
-    //    private lateinit var contentBinding: ActSpannableBinding
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        contentBinding =
-//            DataBindingUtil.setContentView<ActSpannableBinding>(this, R.layout.act_spannable)
         setContentView(R.layout.act_spannable);
-        var spannableStringBuilder = SpannableStringBuilder();
-        spannableStringBuilder.apply {
+
+
+        var tv = findViewById<TextView>(R.id.textView)
+        tv.text = nativeMethod()
+        tv.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun nativeMethod(): SpannableStringBuilder {
+        return SpannableStringBuilder().apply {
             append(list[0])
-                //可以点击，字体蓝色
                 .append(list[1], ForegroundColorSpan(Color.BLUE), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                .append("icon", ImageSpan(this@SpannableStringAct,R.mipmap.icon_editor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                .append(
+                    "icon",
+                    ImageSpan(
+                        this@SpannableStringAct,
+                        R.mipmap.icon_editor,
+                        DynamicDrawableSpan.ALIGN_BASELINE
+                    ),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                //实现图片+list[1] 整体被点击
+                .apply {
+                    val end = this.length
+                    var start = end - "icon".length - list[1].length
+                    setSpan(object : ClickableSpan() {
+                        override fun onClick(widget: View) {
+                            Toast.makeText(this@SpannableStringAct, "听风吹雨", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                }
                 .append(list[2])
                 .append(list[3], UnderlineSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
         }
-
-        findViewById<TextView>(R.id.textView).text = spannableStringBuilder
     }
 
 
