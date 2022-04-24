@@ -99,5 +99,9 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void bt10(View view) {
+        startActivity(new Intent(this,SpannableStringAct.class));
+    }
+
 
 }

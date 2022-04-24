@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.SpannableStringAct"/>
         <activity android:name=".ui.activity.SeekBarActivity" />
         <activity android:name=".ui.activity.SubActivity" />
         <activity android:name=".ui.activity.FatherActivity" />

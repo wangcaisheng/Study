@@ -81,6 +81,13 @@
                 android:layout_height="wrap_content"
                 android:text="Kotlin Study"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/bt10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SpannableString"
+                android:onClick="bt10"
+                android:textAllCaps="false" />
 
            <com.hyman.home.custom.RoundRectImageView
                android:layout_margin="20dp"
