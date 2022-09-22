@@ -2,19 +2,38 @@ package com.hyman.home.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.hyman.home.R
 import com.hyman.home.bean.User
+import com.hyman.home.databinding.ActivityKotlinBinding
+import com.hyman.home.ktx.alert
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * kotlin的协程和伴生对象、主次构造函数、枚举类、注解类、Lambda 表达式、星投影、扩展函数和扩展属性、类委托、高阶函数。还有kotlin的语法糖。
  */
 
 class KotlinActivity : AppCompatActivity() {
+    
+    lateinit var binding: ActivityKotlinBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kotlin)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_kotlin)
+        dealClick()
+        binding.jdView.setData("1,爱工作 \n 2，爱生活 \n 3,要阳光 \n 4,要阳光")
+    }
 
+    private fun dealClick() {
+       binding.bt1.setOnClickListener {
+           GlobalScope.launch {
+               val value = alert("Warming","do you want this?")
+               Toast.makeText(this@KotlinActivity, "My choice is ${value}", Toast.LENGTH_SHORT).show()
+           }
+       }
     }
 
     /**

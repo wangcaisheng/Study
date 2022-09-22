@@ -80,4 +80,7 @@ ext {
     xiangxuePackageName = 'com.xiangxue.libraries'
 
     xiangxueBaseVersion = '1.0.3'
+
+    coroutinesCoreVersion = '1.2.1'
+    coroutinesAndroidVersion = '1.2.1'
 }

@@ -44,6 +44,10 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     //引入rxjava
     api 'io.reactivex.rxjava2:rxjava:2.1.16'
+
+    //协程引入（kotlin没有把协程纳入标准库中，需要单独导入协程的依赖包）
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesCoreVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesAndroidVersion"
 }
 
 /* 修复后发布新版的步骤为：
