@@ -108,6 +108,10 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
-
+    /**
+     * DiffUtil使用
+     * @param view
+     */
+    public void bt12(View view) {
+    }
 }

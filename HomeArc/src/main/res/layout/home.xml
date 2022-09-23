@@ -97,6 +97,15 @@
                 android:onClick="bt11"
                 android:textAllCaps="false" />
 
+            <Button
+                android:id="@+id/bt12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DiffUtil使用"
+                android:onClick="bt12"
+                android:textAllCaps="false" />
+
+
 
         </LinearLayout>
     </ScrollView>
