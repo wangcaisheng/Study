@@ -35,6 +35,7 @@
         <activity android:name=".ui.activity.ExerciseKotlinAc"/>
         <activity android:name=".ui.activity.GestureDetectorActivity"/>
         <activity android:name=".ui.activity.ListRecActivity"/>
+        <activity android:name=".diff.DiffActivity"/>
     </application>
 
 </manifest>
