@@ -54,12 +54,13 @@ public class DiffActivity2 extends AppCompatActivity {
             for (TestBean bean : mDatas) {
                 mNewDatas.add(bean.clone());//clone一遍旧数据 ，模拟刷新操作
             }
-            mNewDatas.add(new TestBean("赵子龙", "帅", R.drawable.pic6));//模拟新增数据
-            mNewDatas.get(0).setDesc("Android+");
+//            mNewDatas.add(new TestBean("赵子龙", "帅", R.drawable.pic6));//模拟新增数据
+            count ++ ;
+            mNewDatas.get(0).setDesc("Android+"+count);
             mNewDatas.get(0).setPic(R.drawable.pic7);//模拟修改数据
-            TestBean testBean = mNewDatas.get(1);//模拟数据位移
-            mNewDatas.remove(testBean);
-            mNewDatas.add(testBean);
+//            TestBean testBean = mNewDatas.get(1);//模拟数据位移
+//            mNewDatas.remove(testBean);
+//            mNewDatas.add(testBean);
 
             //新宠
             //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
@@ -73,7 +74,6 @@ public class DiffActivity2 extends AppCompatActivity {
                     message.sendToTarget();
                 }
             }).start();
-            //mAdapter.notifyDataSetChanged();//以前普通青年的我们只能这样，现在我们是文艺青年了，有新宠了
 
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

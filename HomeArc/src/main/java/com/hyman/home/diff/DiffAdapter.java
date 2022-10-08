@@ -106,6 +106,10 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
         this.mDatas = mNewDatas;
     }
 
+    public List<TestBean> getData() {
+        return mDatas;
+    }
+
     class DiffVH extends RecyclerView.ViewHolder {
         TextView tv1, tv2;
         ImageView iv;
