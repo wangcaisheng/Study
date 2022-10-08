@@ -15,12 +15,12 @@ import com.hyman.home.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiffActivity extends AppCompatActivity {
+public class DiffActivity2 extends AppCompatActivity {
 
     private List<TestBean> mDatas;
     private RecyclerView mRv;
     private DiffAdapter mAdapter;
-    private int count = 0;
+    private int  count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class DiffActivity extends AppCompatActivity {
         initData();
         mRv = (RecyclerView) findViewById(R.id.rv);
         mRv.setLayoutManager(new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mAdapter = new DiffAdapter(this, mDatas,true);
+        mAdapter = new DiffAdapter(this, mDatas,false);
         mRv.setAdapter(mAdapter);
     }
 
@@ -54,27 +54,25 @@ public class DiffActivity extends AppCompatActivity {
             for (TestBean bean : mDatas) {
                 mNewDatas.add(bean.clone());//clone一遍旧数据 ，模拟刷新操作
             }
-//            mNewDatas.add(new TestBean("赵子龙", "帅", R.drawable.pic6));//模拟新增数据
-            count ++;
-            mNewDatas.get(0).setDesc("Android+"+count);
+            mNewDatas.add(new TestBean("赵子龙", "帅", R.drawable.pic6));//模拟新增数据
+            mNewDatas.get(0).setDesc("Android+");
             mNewDatas.get(0).setPic(R.drawable.pic7);//模拟修改数据
-//            TestBean testBean = mNewDatas.get(1);//模拟数据位移
-//            mNewDatas.remove(1);
-//            mNewDatas.add(testBean);
-            mAdapter.submitList(mNewDatas);
+            TestBean testBean = mNewDatas.get(1);//模拟数据位移
+            mNewDatas.remove(testBean);
+            mNewDatas.add(testBean);
 
             //新宠
             //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    //放在子线程中计算DiffResult
-//                    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(mDatas, mNewDatas), false);
-//                    Message message = mHandler.obtainMessage(H_CODE_UPDATE);
-//                    message.obj = diffResult;//obj存放DiffResult
-//                    message.sendToTarget();
-//                }
-//            }).start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //放在子线程中计算DiffResult
+                    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(mDatas, mNewDatas), true);
+                    Message message = mHandler.obtainMessage(H_CODE_UPDATE);
+                    message.obj = diffResult;//obj存放DiffResult
+                    message.sendToTarget();
+                }
+            }).start();
             //mAdapter.notifyDataSetChanged();//以前普通青年的我们只能这样，现在我们是文艺青年了，有新宠了
 
         } catch (CloneNotSupportedException e) {

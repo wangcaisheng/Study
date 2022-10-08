@@ -35,11 +35,13 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
     private Context mContext;
     private LayoutInflater mInflater;
 
-    public DiffAdapter(Context mContext, List<TestBean> mDatas) {
+    public DiffAdapter(Context mContext, List<TestBean> mDatas,boolean isSync) {
         this.mContext = mContext;
         this.mDatas = mDatas;
         mInflater = LayoutInflater.from(mContext);
-        DealDiff(this);
+        if (isSync) {
+            DealDiff(this);
+        }
     }
 
     private AsyncListDiffer<TestBean> mDiffer;
@@ -47,10 +49,8 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
     /**
      * 处理Diff配置
      */
-    public void DealDiff(DiffAdapter diffAdapter){
-        if(true) {
-            mDiffer = new AsyncListDiffer<TestBean>(new AdapterDiffListUpdateCallback(diffAdapter), new AsyncDifferConfig.Builder(new ItemCallBack()).build());
-        }
+    public void DealDiff(DiffAdapter diffAdapter) {
+        mDiffer = new AsyncListDiffer<TestBean>(new AdapterDiffListUpdateCallback(diffAdapter), new AsyncDifferConfig.Builder(new ItemCallBack()).build());
     }
 
     public void setDatas(List<TestBean> mDatas) {

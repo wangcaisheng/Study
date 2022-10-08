@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hyman.home.R;
 import com.hyman.home.ViewPagerAndFragmentLazyLoad;
 import com.hyman.home.diff.DiffActivity;
+import com.hyman.home.diff.DiffActivity2;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import butterknife.BindView;
@@ -110,10 +111,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     * DiffUtil使用
+     * DiffUtil使用 AsyncListDiffer
      * @param view
      */
     public void bt12(View view) {
         startActivity(new Intent(this, DiffActivity.class));
+    }
+
+    /**
+     * DiffUtil使用
+     * @param view
+     */
+    public void bt13(View view) {
+        startActivity(new Intent(this, DiffActivity2.class));
     }
 }
